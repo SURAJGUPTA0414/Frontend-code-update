@@ -11,8 +11,9 @@ import Razorpayhandler from "./Razorpayhandler.jsx";
 import BloodDo from "./blooddo.jsx";
 import AboutUs from "./aboutus.jsx";
 import ContactUs from "./contactus";
-import Dashboard from "./Dashboard.jsx";
+import AdminDashboard from "./AdminDashboard.jsx";  
 import Adminlogin from "./Adminlogin.jsx"
+import Donation from "./Donation.jsx";
 
 const Landingpage = () => {
   return (
@@ -32,7 +33,8 @@ const Landingpage = () => {
           <Route path="/aboutus" element={<AboutUs />} />
           <Route path="/contactus" element={<ContactUs />} />
           <Route path="/razorpayhandler" element={<Razorpayhandler />} />
-          <Route path="/AdminDashboard" element={<Dashboard />} />
+          <Route path="/donation" element={<Donation />} />
+          <Route path="/adminDashboard" element={<AdminDashboard />} />
 
           <Route path="*" element={<Navigate to="/" replace />} />
 

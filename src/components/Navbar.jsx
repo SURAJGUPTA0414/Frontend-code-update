@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import '../styles/Navbar.css';
@@ -6,6 +7,7 @@ import logoImg from "../assets/logo.jpg";
 
 const Navbar = () => {
   const [username, setUsername] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const storedUser = localStorage.getItem("username");
@@ -15,7 +17,7 @@ const Navbar = () => {
   const handleLogout = () => {
     localStorage.removeItem("username");
     setUsername(null);
-    window.location.href = "/"; // redirect to homepage
+    navigate("/"); // redirect to homepage
   };
 
   return (
@@ -25,7 +27,10 @@ const Navbar = () => {
     >
       <div className="container">
         {/* Logo & Brand */}
-        <a className="navbar-brand d-flex align-items-center" href="/Homemain">
+        <button
+          className="navbar-brand d-flex align-items-center btn btn-link text-decoration-none"
+          onClick={() => navigate("/Homemain")}
+        >
           <img
             src={logoImg}
             alt="logo"
@@ -36,7 +41,7 @@ const Navbar = () => {
             Blood Donation Camp{" "}
             <span style={{ color: "#FFD700" }}>Mr.Roxvjdj5</span>
           </span>
-        </a>
+        </button>
 
         {/* Mobile Toggle */}
         <button
@@ -53,76 +58,70 @@ const Navbar = () => {
           <ul className="navbar-nav ms-auto">
             {/* Home Dropdown */}
             <li className="nav-item dropdown">
-              <a
-                className="nav-link dropdown-toggle"
-                href="#"
+              <button
+                className="nav-link dropdown-toggle btn btn-link text-white"
                 id="homeDropdown"
-                role="button"
                 data-bs-toggle="dropdown"
               >
                 Home
-              </a>
+              </button>
               <ul className="dropdown-menu shadow">
                 <li>
-                  <a className="dropdown-item" href="/Homemain">Home</a>
+                  <button className="dropdown-item" onClick={() => navigate("/Homemain")}>Home</button>
                 </li>
                 <li>
-                  <a className="dropdown-item" href="#">About Blood Donation Camp</a>
+                  <button className="dropdown-item">About Blood Donation Camp</button>
                 </li>
                 <li>
-                  <a className="dropdown-item" href="/aboutus">About Us</a>
+                  <button className="dropdown-item" onClick={() => navigate("/aboutus")}>About Us</button>
                 </li>
                 <li>
-                  <a className="dropdown-item" href="#">Gallery</a>
+                  <button className="dropdown-item">Gallery</button>
                 </li>
                 <li>
-                  <a className="dropdown-item" href="#">Video Gallery</a>
+                  <button className="dropdown-item">Video Gallery</button>
                 </li>
               </ul>
             </li>
 
             {/* Looking for Blood */}
             <li className="nav-item dropdown">
-              <a
-                className="nav-link dropdown-toggle"
-                href="#"
+              <button
+                className="nav-link dropdown-toggle btn btn-link text-white"
                 id="bloodDropdown"
-                role="button"
                 data-bs-toggle="dropdown"
               >
                 Looking For Blood
-              </a>
+              </button>
               <ul className="dropdown-menu shadow">
                 <li>
-                  <a className="dropdown-item" href="/boodavilable">Blood Availability</a>
+                  <button className="dropdown-item" onClick={() => navigate("/boodavilable")}>Blood Availability</button>
                 </li>
                 <li>
-                  <a className="dropdown-item" href="/booddonation">Donate Blood</a>
+                  <button className="dropdown-item" onClick={() => navigate("/booddonation")}>Donate Blood</button>
                 </li>
               </ul>
             </li>
 
             {/* Contact */}
             <li className="nav-item">
-              <a className="nav-link" href="/contactus">Contact</a>
+              <button className="nav-link btn btn-link text-white" onClick={() => navigate("/contactus")}>Contact</button>
             </li>
 
-            {/* ✅ Dynamic Account Dropdown */}
+            {/* Dynamic Account Dropdown */}
             <li className="nav-item dropdown">
-              <a
-                className="nav-link dropdown-toggle"
-                href="#"
+              <button
+                className="nav-link dropdown-toggle btn btn-link text-white"
                 id="accountDropdown"
-                role="button"
                 data-bs-toggle="dropdown"
               >
                 {username ? username : "Account"}
-              </a>
+              </button>
               <ul className="dropdown-menu shadow">
                 {username ? (
                   <>
                     <li>
-                      <a className="dropdown-item" href="#">Profile</a>
+                      <button className="dropdown-item">Profile</button>
                     </li>
                     <li>
                       <button
@@ -136,13 +135,13 @@ const Navbar = () => {
                 ) : (
                   <>
                     <li>
-                      <a className="dropdown-item" href="/Login">Login</a>
-                    </li>
-                     <li>
-                      <a className="dropdown-item" href="/Adminlogin">Admin Login</a>
+                      <button className="dropdown-item" onClick={() => navigate("/Login")}>Login</button>
                     </li>
                     <li>
-                      <a className="dropdown-item" href="/Registration">Registration</a>
+                      <button className="dropdown-item" onClick={() => navigate("/AdminDashboard")}>Admin Login</button>
+                    </li>
+                    <li>
+                      <button className="dropdown-item" onClick={() => navigate("/Registration")}>Registration</button>
                     </li>
                   </>
                 )}
@@ -165,12 +164,12 @@ const Navbar = () => {
 
           {/* Donate */}
           <li className="nav-item p-2">
-            <a
+            <button
               className="btn btn-warning fw-bold"
-              href="/Razorpayhandler"
+              onClick={() => navigate("/Razorpayhandler")}
             >
               Give Money, Give Life
-            </a>
+            </button>
           </li>
         </div>
       </div>
